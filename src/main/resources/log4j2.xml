@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="conf1">
+
+    <Appenders>
+        <RollingFile
+                name="rollingFile"
+                fileName="${sys:PATH_TO_SMARTCALC_3_0}logs/logs.log"
+                filePattern="${sys:PATH_TO_SMARTCALC_3_0}logs/logs_%d{yyyy-MM-dd-HH-mm}.log"
+                ignoreExceptions="false"
+                filePermissions="rw-rw-r--"
+        >
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L expression: %m%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <DefaultRolloverStrategy max="5">
+                <Delete basePath="${sys:PATH_TO_SMARTCALC_3_0}logs/" maxDepth="1">
+                    <IfFileName glob="logs_*.log" />
+<!--                    <IfLastModified age="P30D" />-->
+                    <IfAccumulatedFileCount exceeds="5"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %-5p method: [%t] %C{2} (%F:%L) - %m%n"/>
+        </Console>
+
+    </Appenders>
+
+    <Loggers>
+        <Root level="all" additivity="false">
+            <AppenderRef ref="rollingFile" />
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

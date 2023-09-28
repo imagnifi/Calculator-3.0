@@ -1,0 +1,47 @@
+
+h1 {
+    font-size: 20px;
+    text-align: center;
+}
+
+.mainTitle{
+    color: red;
+}
+
+p {
+    background-color: #5f9ea0;
+    font-size: 15px;
+    color: crimson;
+    line-height: 1.5;
+    text-indent: 25px;
+    padding: 10px 15px;
+    border: 1px double green;
+    border-radius: 10px;
+}
+
+ol {
+    font-size: 15px;
+    color: aqua;
+}
+
+#image1 {
+    text-align: center;
+    vertical-align: middle;
+    margin: 20px auto;
+}
+
+.calcImg {
+    width: 400px;
+    border: red 2px solid;
+}
+
+body {
+    background-repeat: repeat;
+    background-position: top left;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-image: url(/images/help_background.jpg);
+}

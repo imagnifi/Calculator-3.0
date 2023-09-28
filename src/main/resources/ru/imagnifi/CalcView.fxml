@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" fillWidth="true" spacing="5" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.imagnifi.view.View">
+   <children>
+      <HBox alignment="BASELINE_LEFT" prefHeight="36.0" prefWidth="294.0">
+         <children>
+            <Button fx:id="Logger" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" onAction="#loggerView" prefHeight="26.0" prefWidth="77.0" text="Logger">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="Help" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" onAction="#helpView" prefHeight="26.0" prefWidth="81.0" text="Help">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <Separator prefHeight="3.0" prefWidth="577.0" />
+      <Label fx:id="resultExpression" prefHeight="89.0" prefWidth="542.0" text="0">
+         <font>
+            <Font size="70.0" />
+         </font>
+      </Label>
+      <Separator prefWidth="200.0" />
+
+            <GridPane fx:id="gridPane" alignment="BOTTOM_LEFT" layoutX="18.0" layoutY="226.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="257.0" prefWidth="562.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="226.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="221.0" minWidth="10.0" prefWidth="216.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="367.0" minWidth="10.0" prefWidth="214.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="367.0" minWidth="10.0" prefWidth="214.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="367.0" minWidth="10.0" prefWidth="214.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="367.0" minWidth="10.0" prefWidth="214.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="367.0" minWidth="10.0" prefWidth="214.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="367.0" minWidth="10.0" prefWidth="214.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="367.0" minWidth="10.0" prefWidth="214.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="367.0" minWidth="10.0" prefWidth="214.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="sin" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="sin" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <font>
+<!--                  <Font size="15.0" />-->
+               </font>
+                  </Button>
+                  <Button fx:id="cos" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="cos" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="tan" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="tan" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="num7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="7" GridPane.columnIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="num8" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="8" GridPane.columnIndex="4">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="num9" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="9" GridPane.columnIndex="5">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="slash" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="/" GridPane.columnIndex="6">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="stepen" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="^" GridPane.columnIndex="7">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="AC" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteAll" text="AC" GridPane.columnIndex="8">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="asin" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="asin" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="acos" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="acos" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="atan" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="atan" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="num4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="4" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="num5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="5" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="num6" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="6" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="umnojit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="*" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="D_f" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#setF" text="D(f)" GridPane.columnIndex="7" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="R" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteOneLast" text="R" GridPane.columnIndex="8" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="log" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="log" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="ln" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="ln" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="sqrt" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="sqrt" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="num1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="1" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="num2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="2" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="num3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="3" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="minus" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="-" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="E_f" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#setF" text="E(f)" GridPane.columnIndex="7" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="f_x" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#paintGraph" text="f(x)" GridPane.columnIndex="8" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="mod" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="mod" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="leftBracket" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="(" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="num0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="point" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="." GridPane.columnIndex="4" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="x" GridPane.columnIndex="5" GridPane.rowIndex="3" fx:id="x">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="plus" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="+" GridPane.columnIndex="6" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="ravno" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#compute" text="=" GridPane.columnIndex="8" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="E" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text="E" GridPane.columnIndex="7" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+                  <Button fx:id="rightBracket" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpression" text=")" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <!--<font>  />-->
+                        <!--<Font size="15.0" />/>-->
+                     <!--</font>/>-->
+                  </Button>
+               </children>
+            </GridPane>
+      <Separator prefWidth="200.0" />
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>

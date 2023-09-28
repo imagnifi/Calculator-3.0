@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ru.imagnifi</groupId>
+    <artifactId>Smart_Calc_3_0</artifactId>
+    <version>3.0</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <jdk.version>1.8</jdk.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <junit.version>5.8.2</junit.version>
+        <log4j.version>2.20.0</log4j.version>
+        <javafx.version>1.8.0</javafx.version>
+        <javacpp.cppbuild.skip>false
+        </javacpp.cppbuild.skip> <!-- To skip execution of cppbuild.sh: -Djavacpp.cppbuild.skip=true -->
+        <javacpp.parser.skip>false
+        </javacpp.parser.skip>     <!-- To skip header file parsing phase: -Djavacpp.parser.skip=true -->
+        <javacpp.compiler.skip>false</javacpp.compiler.skip>
+        <maven.compiler.source>${jdk.version}</maven.compiler.source>
+        <maven.compiler.target>${jdk.version}</maven.compiler.target> <!-- To skip native compilation phase: -Djavacpp.compiler
+        .skip=true -->
+        <maven.install.plugin.version>3.1.1</maven.install.plugin.version>
+        <izpack.version>5.1.2</izpack.version>
+        <izpack.staging>${project.build.directory}</izpack.staging>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.9.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacpp</artifactId>
+            <version>1.5.8</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.26</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx</artifactId>
+            <version>${javafx.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!--JavaFX-controls-->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>${javafx.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>${javafx.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.codehaus.izpack/izpack-maven-plugin -->
+        <dependency>
+            <groupId>org.codehaus.izpack</groupId>
+            <artifactId>izpack-maven-plugin</artifactId>
+            <version>${izpack.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.izpack</groupId>
+            <artifactId>izpack-panel</artifactId>
+            <version>${izpack.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>create-staging-area</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <mkdir dir="${izpack.staging}"/>
+                                <mkdir dir="${project.build.directory}/lib"/>
+                                <copy todir="${izpack.staging}">
+                                    <fileset dir="${basedir}/src/main/izpack"/>
+                                </copy>
+                                <copy todir="${project.build.directory}/classes/ru/imagnifi">
+                                    <fileset dir="${basedir}/src/main/resources/lib" excludes="jfxrt.jar"/>
+                                </copy>
+                                <copy todir="${project.build.directory}">
+                                    <file name="${basedir}/src/main/resources/macos/SmartCalc.command"/>
+                                </copy>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-packages</id>
+                        <phase>package</phase>
+                        <goals><goal>run</goal></goals>
+                        <configuration>
+                            <target>
+                                <mkdir dir="${project.build.directory}/utils"/>
+                                <copy file="${project.build.directory}/CopyLibs.jar"
+                                      tofile="${project.build.directory}/utils/CopyLibs.jar"/>
+                                <copy file="${project.build.directory}/SaveDir.jar"
+                                      tofile="${project.build.directory}/utils/SaveDir.jar"/>
+                                <delete>
+                                    <file name="${project.build.directory}/SaveDir.jar"/>
+                                    <file name="${project.build.directory}/CopyLibs.jar"/>
+                                </delete>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>antrun-echo</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="validate (phase) is starting."/>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>${maven.install.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>install-jar-into-local-maven-repo</id>
+                        <phase>clean</phase>
+                        <goals><goal>install-file</goal></goals>
+                        <configuration>
+                            <groupId>org.openjfx</groupId>
+                            <artifactId>javafx</artifactId>
+                            <version>1.8.0</version>
+                            <file>src/main/resources/lib/javafx/jfxrt.jar</file>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>install-jar-into-local-maven-repo2</id>
+                        <phase>clean</phase>
+                        <goals><goal>install-file</goal></goals>
+                        <configuration>
+                            <groupId>org.openjfx</groupId>
+                            <artifactId>javafx-base</artifactId>
+                            <version>1.8.0</version>
+                                <file>src/main/resources/lib/javafx/javafx.base.jar</file>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>install-jar-into-local-maven-repo3</id>
+                        <phase>clean</phase>
+                        <goals><goal>install-file</goal></goals>
+                        <configuration>
+                            <groupId>org.openjfx</groupId>
+                            <artifactId>javafx-controls</artifactId>
+                            <version>1.8.0</version>
+                                <file>src/main/resources/lib/javafx/javafx.controls.jar</file>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>install-jar-into-local-maven-repo4</id>
+                        <phase>clean</phase>
+                        <goals><goal>install-file</goal></goals>
+                        <configuration>
+                            <groupId>org.openjfx</groupId>
+                            <artifactId>javafx-fxml</artifactId>
+                            <version>1.8.0</version>
+                                <file>src/main/resources/lib/javafx/javafx.fxml.jar</file>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>install-jar-into-local-maven-repo5</id>
+                        <phase>clean</phase>
+                        <goals><goal>install-file</goal></goals>
+                        <configuration>
+                            <groupId>org.openjfx</groupId>
+                            <artifactId>javafx-graphics</artifactId>
+                            <version>1.8.0</version>
+                                <file>src/main/resources/lib/javafx/javafx.graphics.jar</file>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>install-jar-into-local-maven-repo6</id>
+                        <phase>clean</phase>
+                        <goals><goal>install-file</goal></goals>
+                        <configuration>
+                            <groupId>org.openjfx</groupId>
+                            <artifactId>javafx-media</artifactId>
+                            <version>1.8.0</version>
+                                <file>src/main/resources/lib/javafx/javafx.media.jar</file>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.1.2</version>
+                </plugin>
+
+
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.3</version>
+                <configuration>
+                    <mainClass>ru.imagnifi.Main</mainClass>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <excludes>
+                                <exclude>/lib/**</exclude>
+                                <exclude>/linux/**</exclude>
+                                <exclude>/windows/**</exclude>
+                                <exclude>/res_for_panels/**</exclude>
+                                <exclude>**/javafx/**</exclude>
+                                <exclude>**/jnijavacpp.obj</exclude>
+                                <exclude>**/jniModel.dll</exclude>
+                                <exclude>**/jniModel.exp</exclude>
+                                <exclude>**/jniModel.lib</exclude>
+                                <exclude>**/jniModel.obj</exclude>
+                                <exclude>**/libjniModel.dylib</exclude>
+                                <exclude>**/libjniModel.so</exclude>
+                                <exclude>**/CopyLibs.class</exclude>
+                                <exclude>**/assemblyPlugin.xml</exclude>
+                                <exclude>**/config.properties</exclude>
+                                <exclude>**/log4j.prop</exclude>
+                                <exclude>**/Model.h</exclude>
+                                <exclude>**/Model.cpp</exclude>
+                            </excludes>
+                            <archive>
+                                <manifest>
+                                    <addClasspath>true</addClasspath>
+                                    <classpathPrefix>lib/</classpathPrefix>
+                                    <mainClass>ru.imagnifi.Main</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copyLibsJar</id>
+                        <phase>prepare-package</phase>
+                        <goals><goal>jar</goal></goals>
+                        <configuration>
+                            <jarName>CopyLibs</jarName>
+                            <includes>
+                                <include>**/CopyLibs.class</include>
+                                <include>**/CopyLibs$OS.class</include>
+                            </includes>
+                            <archive>
+                                <manifest>
+<!--                                    <addClasspath>true</addClasspath>-->
+<!--                                    <classpathPrefix>lib/</classpathPrefix>-->
+                                    <mainClass>ru.imagnifi.CopyLibs</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </execution><execution>
+                        <id>saveDirJar</id>
+                        <phase>prepare-package</phase>
+                        <goals><goal>jar</goal></goals>
+                        <configuration>
+                            <jarName>SaveDir</jarName>
+                            <includes>
+                                <include>**/SaveDir.class</include>
+                            </includes>
+                            <archive>
+                                <manifest>
+                                    <mainClass>ru.imagnifi.SaveDir</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.bytedeco</groupId>
+                <artifactId>javacpp</artifactId>
+                <version>1.5.8</version>
+                <configuration>
+                    <classPaths>
+                        <classPath>${project.build.outputDirectory}</classPath>
+                    </classPaths>
+                    <includePaths>
+                        <includePath>C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\ucrt</includePath>
+                        <includePath>E:\Установленные программы\Micros Visual Studio\VC\Tools\MSVC\14.35.32215\include
+                        </includePath>
+                        <includePath>C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um</includePath>
+                        <includePath>C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\shared</includePath>
+                        <includePath>C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\winrt</includePath>
+                        <includePath>C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\cppwinrt</includePath>
+                    </includePaths>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>javacpp.compiler</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                        <configuration>
+<!--                            <properties>windows-x86_64</properties>-->
+                            <deleteJniFiles>true</deleteJniFiles>
+                            <skip>${javacpp.compiler.skip}</skip>
+                            <compilerOptions>/std:c11</compilerOptions>
+                            <!-- Change to your package name -->
+                            <classOrPackageName>ru.imagnifi.model.*</classOrPackageName>
+<!--                            <copyLibs>true</copyLibs>-->
+                            <outputDirectory>${project.build.outputDirectory}/ru/imagnifi</outputDirectory>
+                            <outputName>jniModel</outputName>
+                            <linkPaths>
+                                <linkPath>C:\Program Files (x86)\Windows Kits\10\Lib\10.0.20348.0\um\x64</linkPath>
+                                <linkPath>E:\Установленные программы\Micros Visual Studio\VC\Tools\MSVC\14.35.32215\lib\x64
+                                </linkPath>
+                                <linkPath>C:\Program Files (x86)\Windows Kits\10\Lib\10.0.20348.0\ucrt\x64</linkPath>
+                            </linkPaths>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--Копирование зависимотей в папку lib/-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.6.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <!--Все зависимости которые нужны для работы твоего приложения будут лежать здесь-->
+                            <outputDirectory>${project.build.directory}/lib/</outputDirectory>
+                            <excludeTransitive>false</excludeTransitive>
+                            <excludeGroupIds>org.codehaus.izpack, org.junit.jupiter, org.projectlombok</excludeGroupIds>
+                        </configuration>
+                    </execution>
+<!--                    <execution>-->
+<!--                        <id>copy-jgit-dependency</id>-->
+<!--                        <phase>prepare-package</phase>-->
+<!--                        <goals><goal>copy</goal></goals>-->
+<!--                        <configuration>-->
+<!--                            <artifactItems>-->
+<!--                                <artifactItem>-->
+<!--                                    <groupId>org.eclipse.jgit</groupId>-->
+<!--                                    <artifactId>org.eclipse.jgit</artifactId>-->
+<!--                                    <version>5.13.2.202306221912-r</version>-->
+<!--                                </artifactItem>-->
+<!--                            </artifactItems>-->
+<!--                            <outputDirectory>${project.build.directory}/lib/</outputDirectory>-->
+<!--                            <overWriteReleases>true</overWriteReleases>-->
+<!--                            <overWriteSnapshots>true</overWriteSnapshots>-->
+<!--                            <overWriteIfNewer>true</overWriteIfNewer>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.izpack</groupId>
+                <artifactId>izpack-maven-plugin</artifactId>
+                <version>${izpack.version}</version>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>izpack</goal>
+                        </goals>
+                        <configuration>
+                            <!-- base for relative paths in izpack descriptor -->
+                            <baseDir>${izpack.staging}</baseDir>
+                            <installFile>${basedir}/src/main/izpack/install.xml</installFile>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <finalName>sss-${project.build.finalName}</finalName>
+                            <enableOverrideArtifact>true</enableOverrideArtifact>
+                            <mkdirs>true</mkdirs>
+                            <autoIncludeUrl>false</autoIncludeUrl>
+                            <autoIncludeDevelopers>false</autoIncludeDevelopers>
+<!--                            <output>src/installer/install_WinLinMac_SmartCalc.jar</output>-->
+                            <output>target/install_WinLinMac_SmartCalc.jar</output>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.izpack</groupId>
+                        <artifactId>izpack-panel</artifactId>
+                        <version>${izpack.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+
+
+    </build>
+
+
+</project>

@@ -1,0 +1,11 @@
+<izpack:langpack version="5.0" xmlns:izpack="http://izpack.org/schema/langpack"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://izpack.org/schema/langpack http://izpack.org/schema/5.0/izpack-langpack-5.0.xsd">
+
+    <str id="installer.reversetitle" txt="$APP_NAME 3.0 Installer"/>
+<!--    <str id="CheckedHelloPanel.hellopanel.headine" txt="111111111111111111"/>-->
+<!--    <str id="TargetPanel.targetpanel.headline" txt="Take a deep breath and gimme an installation directory"/>-->
+<!--    <str id="HTMLInfoPanel.infopanel.headline" txt="Welcome to DDDDDDDDDRRRRRRRR"/>-->
+<!--    <str id="HTMLInfoPanel.infopanel.headinfo" txt="BBBBBBBBBBBBBBB"/>-->
+
+</izpack:langpack>

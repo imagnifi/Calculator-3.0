@@ -1,0 +1,64 @@
+<izpack:shortcuts version="5.0"
+                  xmlns:izpack="http://izpack.org/schema/shortcuts"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://izpack.org/schema/shortcuts http://izpack.org/schema/5.0/izpack-shortcuts-5.0.xsd">
+
+
+
+    <programGroup defaultName="SmartCalc_3.0" location="applications" comment="SmartCalc group"/>
+
+    <shortcut
+            name="SmartCalc_3.0"
+            target="${INSTALL_PATH}/Smart_Calc_3_0.jar"
+            programGroup="yes"
+            desktop="yes"
+            description="SmartCalc 3.0"
+            workingDirectory="${INSTALL_PATH}"
+            iconFile="${INSTALL_PATH}/classes/images/calculator1.ico"
+            encoding="UTF-8"
+            categories="Applications; Utility; Office"
+            terminal="no"
+            tryexec="${INSTALL_PATH}/Smart_Calc_3_0.jar"
+            type="Application"
+    >
+        <os family="windows" />
+        <createForPack name="core"/>
+    </shortcut>
+
+    <shortcut
+            name="SmartCalc_3.0"
+            type="Application"
+            target="sh ${INSTALL_PATH}/classes/linux/start.sh"
+            commandLine="${INSTALL_PATH}"
+            desktop="yes"
+            applications="yes"
+            description="This is main shortcut"
+            workingDirectory="${INSTALL_PATH}"
+            iconFile="${INSTALL_PATH}/classes/images/calculator1.ico"
+            encoding="UTF-8"
+            categories="Applications; Utility; Office"
+            terminal="no"
+    >
+        <os name="linux"/>
+        <os name="ubuntu_linux"/>
+        <os name="debian_linux"/>
+        <os name="feodora_linux"/>
+        <createForPack name="core"/>
+    </shortcut>
+
+    <shortcut
+            name="Uninstall"
+            target="${INSTALL_PATH}/Uninstaller/uninstaller.jar"
+            programGroup="true"
+            description="Uninstall SmartCalc 3.0"
+            iconFile="${INSTALL_PATH}/classes/images/calculator.ico"
+    >
+        <os family="windows"/>
+        <os name="linux"/>
+        <os name="ubuntu_linux"/>
+        <os name="debian_linux"/>
+        <os name="feodora_linux"/>
+        <createForPack name="core"/>
+    </shortcut>
+
+</izpack:shortcuts>

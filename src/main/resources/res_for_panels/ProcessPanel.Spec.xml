@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<izpack:processing version="5.0"
+                   xmlns:izpack="http://izpack.org/schema/processing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://izpack.org/schema/processing https://izpack.org/schema/5.0/izpack-processing-5.0.xsd">
+    <logfiledir>${INSTALL_PATH}</logfiledir>
+    <job name="linux permissions">
+        <os name="linux"/>
+        <os name="ubuntu_linux"/>
+        <os name="debian_linux"/>
+        <os name="feodora_linux"/>
+        <executefile name="${INSTALL_PATH}/classes/linux/permissions.sh">
+            <arg>${INSTALL_PATH}</arg>
+        </executefile>
+    </job>
+    <job name="win permissions">
+        <os family="windows"/>
+        <executefile name="${INSTALL_PATH}/classes/windows/perm.bat">
+            <arg>${INSTALL_PATH}</arg>
+        </executefile>
+    </job>
+    <job name="mac permissions">
+        <os family="mac"/>
+        <executefile name="${INSTALL_PATH}/classes/macos/perm.sh">
+            <arg>${INSTALL_PATH}</arg>
+        </executefile>
+    </job>
+    <onFail previous="true" next="false"/>
+    <onSuccess previous="true" next="true"/>
+
+</izpack:processing>
